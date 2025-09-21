@@ -68,6 +68,7 @@ export default function Services(){
   const [items, setItems] = useState(SERVICE_LIST.map(s => ({...s, qty: 0})))
   const [phone, setPhone] = useState('')
   const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
   const [address, setAddress] = useState('')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState(null)
@@ -121,6 +122,7 @@ export default function Services(){
     setMessage(null)
   if(!name) return setMessage({type:'error', text:'กรุณากรอก ชื่อ นามสกุล'})
   if(!phone) return setMessage({type:'error', text:'กรุณากรอก เบอร์มือถือ'})
+  if(!email) return setMessage({type:'error', text:'กรุณากรอก อีเมล'})
   if(!address) return setMessage({type:'error', text:'กรุณากรอก ที่อยู่สำหรับจัดส่งเอกสาร'})
     if(subtotal <= 0) return setMessage({type:'error', text:'กรุณาเลือกบริการอย่างน้อย 1 รายการ'})
 
@@ -135,7 +137,7 @@ export default function Services(){
   if(missing) return setMessage({type:'error', text:'กรุณากรอกข้อมูลให้ครบถ้วนสำหรับผู้ถูกตรวจทุกราย'})
 
   const selected = items.filter(i=>i.qty>0).map(i=>({id:i.id,name:i.name,qty:i.qty,price:i.price}))
-  const payload = { name, address, phone, items: selected, total: subtotal, entries }
+  const payload = { name, address, phone, email, items: selected, total: subtotal, entries }
 
     try{
       setLoading(true)
@@ -253,22 +255,27 @@ export default function Services(){
 
             <div className="w-full md:grid-cols-2">
               <div className="md:w-full">
-                <label className="text-sm block mb-1">ชื่อ นามสกุล</label>
+                <label className="text-sm block mb-1">ชื่อ นามสกุล <span className="text-red-600">*</span></label>
                 <input value={name} onChange={e=>setName(e.target.value)} type="text" className="border rounded px-3 py-2 w-full" />
               </div>
               <div className="md:w-full">
-                <label className="text-sm block mb-1">เบอร์มือถือ</label>
+                <label className="text-sm block mb-1">เบอร์มือถือ <span className="text-red-600">*</span></label>
                 <input value={phone} onChange={e=>setPhone(e.target.value)} type="tel" className="border rounded px-3 py-2 w-full" />
               </div>
               {/* email removed - contact via phone and name/address required */}
               <div className="md:w-full">
-                <label className="text-sm block mb-1">ที่อยู่สำหรับจัดส่งเอกสาร</label>
+                <label className="text-sm block mb-1">ที่อยู่สำหรับจัดส่งเอกสาร <span className="text-red-600">*</span></label>
                 <textarea value={address} onChange={e=>setAddress(e.target.value)} className="border rounded px-3 py-2 w-full" rows={3} />
               </div>
             </div>
 
-              <button type="submit" className="btn btn-primary w-full text-center h-10" disabled={loading}>{loading? 'กำลังส่ง...' : 'ส่งเอกสาร'}</button>
-              <Link href="/" className="btn w-full text-center h-10">กลับหน้าแรก</Link>
+            <div className="mt-3">
+              <label className="text-sm block mb-1">อีเมล <span className="text-red-600">*</span></label>
+              <input value={email} onChange={e=>setEmail(e.target.value)} type="email" className="border rounded px-3 py-2 w-full" />
+            </div>
+
+              <button type="submit" className="btn btn-primary w-full text-center h-10 mt-4" disabled={loading}>{loading? 'กำลังส่ง...' : 'ส่งเอกสาร'}</button>
+              <Link href="/" className="btn w-full text-center h-10 mt-2">กลับหน้าแรก</Link>
           </div>
         </form>
         {message && (

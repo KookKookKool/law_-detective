@@ -21,7 +21,12 @@ const ALL_SERVICES = [
 
 export default function Home(){
   // show a small set of recommended services on the homepage to keep it clean on mobile
-  const visible = ALL_SERVICES.slice(0,4)
+  const visible = [
+    {id:'deposit', name:'บัญชีเงินฝาก'},
+    {id:'land', name:'ตรวจที่ดิน'},
+    {id:'vehicle', name:'ตรวจรถ'},
+    {id:'phone', name:'ตรวจเบอร์โทร'}
+  ]
   const heroRef = useRef(null)
 
   return (
@@ -42,14 +47,14 @@ export default function Home(){
           </div>
 
           {/* features card placed inside hero so whole page fits 100vh */}
-          <div className="w-full max-w-3xl mx-auto p-10 md:p-8 sm:p-4">
-            <section className="features bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+          <div className="w-full max-w-3xl mx-auto px-6 lg:px-9 md:px-10 sm:px-5">
+            <section className="features bg-white p-6 md:p-8 sm:p-6 rounded-lg shadow-lg">
               <h2 className="text-xl font-semibold">บริการแนะนำ</h2>
               <p className="text-sm text-gray-600 mt-1">บริการยอดนิยมที่ลูกค้ามักเลือก</p>
               <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 list-none p-0">
                 {visible.map((s)=> (
                   <li key={s.id} className="bg-gray-50 border rounded overflow-hidden">
-                    <Link href={`/services#${s.id}`} className="block px-4 py-3 w-full h-full text-gray-800 hover:bg-gray-100">{s.name}</Link>
+                    <Link href={`/services#${s.id}`} className="block px-6 py-4 w-full h-full text-gray-800 hover:bg-gray-100">{s.name}</Link>
                   </li>
                 ))}
               </ul>
