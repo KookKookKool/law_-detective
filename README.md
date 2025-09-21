@@ -91,18 +91,18 @@ Next steps / improvements
 - Add real images to the `credits` page
 - Implement server-side email/send and payment integration
 - Add form validation and accessibility improvements
-# law_-detective
 
-Deployment
-----------
+# law\_-detective
+
+## Deployment
 
 This repository can be deployed to Vercel. Two options:
 
-1) Connect the GitHub repository to Vercel (recommended):
+1. Connect the GitHub repository to Vercel (recommended):
+
    - Go to vercel.com, import project from GitHub, select this repository.
    - Configure build settings (Next.js detected automatically).
 
-2) CI deploy via GitHub Actions:
+2. CI deploy via GitHub Actions:
    - Add the following repository secrets in GitHub: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`.
    - Push to `main` branch; the workflow `.github/workflows/deploy-vercel.yml` will run and call the Vercel CLI.
-
