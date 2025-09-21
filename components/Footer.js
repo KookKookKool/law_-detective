@@ -1,0 +1,10 @@
+export default function Footer(){
+	return (
+		<footer className="site-footer w-full bg-gray-50 border-t">
+			<div className="container h-full flex items-center justify-between">
+				<div className="text-sm text-gray-600">© {new Date().getFullYear()} บริการรับตรวจ</div>
+				<div className="text-sm text-gray-600">ติดต่อ: <a href="tel:0812345678">081-234-5678</a></div>
+			</div>
+		</footer>
+	)
+}

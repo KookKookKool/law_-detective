@@ -1,0 +1,85 @@
+:root{
+  --max-w: 1100px;
+  --gap: 16px;
+  --primary: #0b66ff;
+  --muted: #666;
+}
+/* Tailwind base + components + utilities */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles (plain CSS) */
+@layer base{
+  *{box-sizing:border-box}
+  body{font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; color:#111;background:#fafafa;overflow-x:hidden}
+}
+
+@layer components{
+  .container{max-width:var(--max-w);margin:0 auto;padding: 1.5em;}
+
+    /* Layout fractions: header 10vh, content 80vh, footer 10vh */
+    .site-header{height:10vh;min-height:56px}
+    .site-footer{height:10vh;min-height:56px}
+
+/* Buttons */
+  /* Buttons */
+  .btn{display:inline-flex;padding:8px 12px;border-radius:8px;border:1px solid #e5e7eb;text-decoration:none;color:inherit;align-items:center;justify-content:center;gap:8px;min-height:36px;background:#ffffff;font-size:15px}
+  /* primary style for elements that have both classes: <a class="btn btn-primary"> */
+  .btn.btn-primary{background:var(--primary);color:white;border:none;padding:8px 14px;border-radius:8px;box-shadow:0 6px 12px rgba(11,102,255,0.08)}
+  .btn[disabled], .btn.btn-primary[disabled]{opacity:0.6}
+
+  /* ghost / text buttons */
+  .btn-ghost{background:transparent;border:none;color:rgba(255,255,255,0.98);padding:8px 10px;font-weight:600}
+  .btn-ghost:hover{opacity:0.95;text-decoration:underline}
+
+  /* hero-specific button tweaks when placed on an image */
+  .hero-buttons .btn{background:rgba(255,255,255,0.95);color:#111;border-radius:10px}
+  .hero-buttons .btn.btn-primary{background:var(--primary);color:white}
+  /* outlined ghost for secondary hero button */
+  .hero-buttons .btn-ghost{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.28);color:rgba(255,255,255,0.98);padding:8px 12px;border-radius:8px}
+  .hero-buttons .btn-ghost:hover{background:rgba(255,255,255,0.12)}
+
+/* Hero */
+  /* Hero */
+  .hero-hero{position:relative;display:flex;flex-direction:column;width:100%;overflow:hidden;padding-top:0}
+  .hero-hero span, .hero-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.6));z-index:5}
+  .hero-inner{position:relative;z-index:10;display:flex;align-items:center;flex-direction:column;justify-content:center;padding:24px 0}
+    .hero-inner{position:relative;z-index:10;display:flex;align-items:center;flex-direction:column;justify-content:center;padding:12px 0;height:80vh}
+  .hero-content{color:white;max-width:720px;padding:24px}
+  .hero-content h1{font-size:40px;margin:0 0 12px}
+  .hero-content p{margin:0 0 14px;opacity:0.95}
+  .features.bg-white{background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.95))}
+  .hero .features{box-shadow:0 8px 30px rgba(12,22,35,0.08)}
+
+  .features{margin-top:24px}
+
+/* Message */
+  /* Message */
+  .message{margin-top:12px;padding:10px;border-radius:6px}
+  .message-success{background:#e6fff0;border:1px solid #b7f0c9;color:#056a33}
+  .message-error{background:#fff0f0;border:1px solid #f1b0b0;color:#8a1a1a}
+
+/* Services grid */
+  /* Services grid */
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+  .card{background:#fafafa;height:160px;display:flex;align-items:center;justify-content:center;border-radius:8px;border:1px solid #eee}
+  .thumb{color:var(--muted)}
+
+  /* Services form actions (desktop) */
+  .form-actions{display:flex;flex-direction:column;justify-content:center;gap:12px}
+  .form-actions .btn{min-height:44px;padding-top:0.5rem;padding-bottom:0.5rem}
+  input[type="email"], input[type="tel"]{height:44px;padding-top:0.5rem;padding-bottom:0.5rem}
+
+/* Responsive */
+  /* Responsive */
+  @media(max-width:900px){
+    .grid{grid-template-columns:repeat(3,1fr)}
+  }
+  @media(max-width:600px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+    .card{height:120px}
+    .container{padding:12px}
+  }
+}
